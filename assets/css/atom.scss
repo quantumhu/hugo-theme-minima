@@ -38,6 +38,8 @@ $screens: ("", 0), (sm\:, 640px);
     .#{$k}w-48 { width: 12rem; }
 
     .#{$k}w-40 { width: 10rem; }
+
+    .#{$k}w-8  { width: 2rem; }
   }
 }
 
@@ -84,7 +86,7 @@ $weights: (thin, 100), (extralight, 200), (light, 300), (normal, 400),
   }
 }
 
-$texts: (xs, 0.75), (sm, 0.875), (base, 1), (lg, 1.125), (xl, 1.25),
+$texts: (xxs, 0.6), (xs, 0.75), (sm, 0.875), (base, 1), (lg, 1.125), (xl, 1.25),
         (2xl, 1.5), (3xl, 1.875), (4xl, 2.25), (5xl, 3), (6xl, 3.75);
 @each $k, $s in $texts {
   .text-#{$k} {
