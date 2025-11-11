@@ -6,7 +6,7 @@
     <a class="text-lg font-bold" href="{{ .RelPermalink }}">{{ .Title }}</a>
     {{ end }}
     {{ if .Site.Params.displayDate }}
-    <div class="text-sm font-bold whitespace-nowrap {{ if not .Site.Params.displayDescription }}mb-8{{ end }}">{{ .Date | time.Format (T "timeformat") }}</div>
+    <div class="text-sm font-italic whitespace-nowrap {{ if not .Site.Params.displayDescription }}mb-8{{ end }}">{{ .Date | time.Format (T "timeformat") }}</div>
     {{ end }}
   </div>
   {{ if .Site.Params.displayDescription }}

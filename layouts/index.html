@@ -11,9 +11,7 @@
   <h3 class="text-center sm:text-left mt-6 mb-4 text-2xl font-bold">{{ T "posts" }}</h3>
   <div>
     {{ range where .Site.RegularPages "Kind" "page" }}
-      {{ if ne .Layout "search" }}
-        {{ partial "item.html" . }}
-      {{ end }}
+      {{ partial "item.html" . }}
     {{ end }}
   </div>
   {{ if .Site.Params.friends.feeds }}

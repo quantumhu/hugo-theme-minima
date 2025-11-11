@@ -7,18 +7,52 @@ let fuse;
 
 window.onload = async function() {
   const data = await fetch("../index.json").then(res => res.json());
-  const opts = params.search.fuse;
+  const optsJSON = params.search.fuse.options;
+  const opts = JSON.parse(optsJSON);
   fuse = new Fuse(data, opts);
+}
+
+function escapeRegExp(text) {
+  // From https://stackoverflow.com/a/3561711
+  return text.replace(/[/\-\\^$*+?.()|[\]{}]/g, '\\$&');
 }
 
 search_input.addEventListener("input", function () {
   if (!fuse) return;
-  const results = fuse.search(this.value.trim());
+  const query = this.value.trim();
+  const results = fuse.search(query);
+
+  const regex = new RegExp(escapeRegExp(query), "gi");
+
   let html = '';
   if (results.length > 0) {
-    for (const v of results) {
-      html += `<li><a href="${v.item.permalink}">${v.item.title}</a></li>`;
+    for (const result of results) {
+      var displayTitle = result.item.title;
+
+      result.matches.forEach(match => {
+        if (match.key == "title")
+        {
+          displayTitle = displayTitle.replace(regex, match => `<b>${match}</b>`);
+        }
+      });
+      
+      html += `<li class="mb-4"><a class="text-lg" href="${result.item.permalink}">${displayTitle}</a></li>`;
     }
   }
-  search_result.innerHTML = html;
+
+  if (html.length > 0)
+  {
+    search_result.innerHTML = html;
+  }
+  else
+  {
+    if (query.length <= 1)
+    {
+      search_result.innerHTML = `<li class="text-lg">${hugoTranslations.short}</li>`;
+    }
+    else
+    {
+      search_result.innerHTML = `<li class="text-lg">${hugoTranslations.none}</li>`;
+    }
+  }
 })

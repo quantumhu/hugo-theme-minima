@@ -29,3 +29,11 @@ paginator:
 post:
   at:
     other: Post at
+  on:
+    other: Posted on
+
+fuse:
+  short:
+    other: Please enter at least 2 characters
+  none:
+    other: No results found
