@@ -37,3 +37,7 @@ fuse:
     other: Please enter at least 2 characters
   none:
     other: No results found
+
+seriesparts:
+  blurb:
+    other: "This is part %d out of %d in a series \"%s\". See %s."

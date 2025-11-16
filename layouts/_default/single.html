@@ -24,6 +24,19 @@
     {{ end }}
   </div>
   <main class="mb-8">
+    {{ if .Params.seriesparts.name }}
+      {{ $seriesparts := where .Site.RegularPages ".Params.seriesparts.name" .Params.seriesparts.name }}
+      {{ if gt (len $seriesparts) 1 }}
+        {{ $seriesparts := sort $seriesparts ".Params.seriesparts.part" }}
+        {{ $links := slice }}
+        {{ range $part := $seriesparts }}
+          {{ if not (eq $part.Params.seriesparts.part $.Params.seriesparts.part) }}
+            {{ $links = $links | append (printf "<a href=\"%s\">Part %d</a>" $part.Permalink $part.Params.seriesparts.part) }}
+          {{ end }}
+        {{ end }}
+        <p class="mb-8 text-sm"><i>{{ printf (T "seriesparts.blurb") .Params.seriesparts.part (len $seriesparts) .Params.seriesparts.name (delimit $links ", ") | safeHTML }}</i></p>
+      {{ end }}
+    {{ end }}
     <p>{{ .Description | markdownify | safeHTML }}</p>
     <article class="md">
       {{ .Content }}
