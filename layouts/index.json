@@ -1,5 +1,5 @@
 {{- $.Scratch.Add "index" slice -}}
 {{- range site.RegularPages -}}
-  {{- $.Scratch.Add "index" (dict "title" .Title "permalink" .Permalink "summary" .Summary "content" (.Content | plainify)) -}}
+  {{- $.Scratch.Add "index" (dict "title" .Title "permalink" .Permalink "summary" (.Summary | plainify)) -}}
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}

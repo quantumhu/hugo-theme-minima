@@ -44,10 +44,17 @@
   const theme_config = '{{ .Site.Params.defaultTheme }}'
   const theme_light = theme_config === 'system' ? 'light' : theme_config;
   let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : theme_light;
-  console.debug(theme);
 
   try {
-    localStorage.setItem('theme', theme);
+    let stored_theme = localStorage.getItem('theme');
+    if (stored_theme != null)
+    {
+      theme = stored_theme;
+    }
+    else
+    {
+      localStorage.setItem('theme', theme);
+    }
     window.minima_theme = theme;
     document.querySelector('html').classList.add(theme);
   } catch (e) {
