@@ -11,6 +11,8 @@
   <title>
     {{ if .IsHome }}
     {{ .Site.Title }} {{ if .Site.Params.subtitle }} - {{ .Site.Params.subtitle }} {{ end }}
+    {{ else if .IsPage }}
+    {{ .Title }} - {{ .Site.Title }}
     {{ else }}
     {{ .Site.Title }} - {{ .Title }}
     {{ end }}
