@@ -21,7 +21,12 @@
   {{ $favicon := "favicon.ico" }}
   <link rel="shortcut icon" href="{{ $favicon | relURL }}?v={{ time.Now.Unix }}" type="image/x-icon" />
   <!-- styles -->
+  {{ $options := "" }}
+  {{ if not hugo.IsProduction }}
   {{ $options := (dict "targetPath" "minima.css" "outputStyle" "compressed" "enableSourceMap" true) }}
+  {{ else }}
+  {{ $options := (dict "targetPath" "minima.css" "outputStyle" "compressed") }}
+  {{ end }}
   {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "main.scss" . | css.Sass $options | fingerprint }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
   <!-- scripts -->
