@@ -29,7 +29,7 @@ paginator:
 post:
   at:
     other: Post at
-  on:
+  "on":
     other: Posted on
 
 fuse:
