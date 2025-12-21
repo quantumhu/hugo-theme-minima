@@ -17,6 +17,16 @@
   border: 0;
 }
 
+/* for making the line numbers stay hovering, but only works if the line numbers are at most 2 digits */
+.chroma .lntd:nth-of-type(1) pre {
+  position: absolute;
+  max-width: 2.5rem;
+}
+
+.chroma .lntd:nth-of-type(2) pre {
+  margin-left: 2.5rem;
+}
+
 .chroma .lntable tbody {
   border: 0;
 }
